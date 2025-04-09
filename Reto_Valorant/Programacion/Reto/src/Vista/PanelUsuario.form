@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Vista.PanelUsuario">
+  <grid id="27dc6" binding="pPrincipal" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="a6096" class="javax.swing.JMenuBar" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <grid id="f7838" class="javax.swing.JMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <text value="Equipos"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="20c5f" class="javax.swing.JMenuItem" binding="iCrearEquipo">
+                <constraints/>
+                <properties>
+                  <text value="Crear Equipo"/>
+                </properties>
+              </component>
+              <component id="b023e" class="javax.swing.JMenuItem" binding="iConsultarEquipo">
+                <constraints/>
+                <properties>
+                  <text value="Consultar Equipo"/>
+                </properties>
+              </component>
+              <component id="44ae" class="javax.swing.JMenuItem" binding="iActualizarEquipo">
+                <constraints/>
+                <properties>
+                  <text value="Actualizar Equipo"/>
+                </properties>
+              </component>
+              <component id="e6aee" class="javax.swing.JMenuItem" binding="iBorrarEquipo">
+                <constraints/>
+                <properties>
+                  <text value="Borrar Equipo"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="185fc" class="javax.swing.JMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <text value="Jugadores"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="2e0e3" class="javax.swing.JMenuItem" binding="iCrearJugador">
+                <constraints/>
+                <properties>
+                  <text value="Crear Jugador"/>
+                </properties>
+              </component>
+              <component id="49cd" class="javax.swing.JMenuItem" binding="iConsultarJugador">
+                <constraints/>
+                <properties>
+                  <text value="Consultar Jugador"/>
+                </properties>
+              </component>
+              <component id="5ea2a" class="javax.swing.JMenuItem" binding="iActualizarJugador">
+                <constraints/>
+                <properties>
+                  <text value="Actualizar Jugador"/>
+                </properties>
+              </component>
+              <component id="4f2c8" class="javax.swing.JMenuItem" binding="iBorrarJugador">
+                <constraints/>
+                <properties>
+                  <text value="Borrar Jugador"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="1d88d" class="javax.swing.JMenu" binding="mInformes" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <text value="Informes"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <vspacer id="4d3b0">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="496b0" class="javax.swing.JButton" binding="bEmpezarComp">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Comenzar Competicion"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
