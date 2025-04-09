@@ -17,7 +17,7 @@ create table juegos(
 create table usuarios(
     cod_usuario number(2) generated always as identity,
     nombre varchar2(20) not null unique,
-    contraseña varchar2(20),
+    contraseÃ±a varchar2(20),
     tipo_usuario varchar(1),
     constraint usu_cod_pk primary key(cod_usuario)
 );
@@ -112,7 +112,7 @@ for each row
             else
                 e_mensaje := e_mensaje || 'actualizar';
             end if;
-            e_mensaje := e_mensaje || ' tiene mas de 65 años.';
+            e_mensaje := e_mensaje || ' tiene mas de 65 aÃ±os.';
             raise_application_error(-20001,e_mensaje);
         when edad_menor then
             e_mensaje := 'La persona que se ha intentado ';
@@ -121,7 +121,7 @@ for each row
             else
                 e_mensaje := e_mensaje || 'actualizar';
             end if;
-            e_mensaje := e_mensaje || ' tiene menos de 16 años.';
+            e_mensaje := e_mensaje || ' tiene menos de 16 aÃ±os.';
             raise_application_error(-20001,e_mensaje);
 end tr_jug_nac;
 
