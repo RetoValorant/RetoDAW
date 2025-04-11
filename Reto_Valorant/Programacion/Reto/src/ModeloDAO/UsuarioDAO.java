@@ -17,6 +17,7 @@ public class UsuarioDAO {
     }
 
     //crud
+    /** hecho de esta manera para que pueda lanzar la exception en IniciarSesion.class */
     public Usuario validarUsuario(String nombreUsuario) throws SQLException {
         sql="SELECT * FROM usuarios WHERE lower(nombre) = ?";
         Usuario usuario = new Usuario();
@@ -28,7 +29,7 @@ public class UsuarioDAO {
             usuario.setPaswd(rs.getString("contraseña"));
             usuario.setTipoUsuario(rs.getString("tipo_usuario"));
             return usuario;
-            /** hecho de esta manera para que pueda lanzar la exception en IniciarSesion.class */
+
         }
         return null;
     }

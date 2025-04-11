@@ -3,8 +3,6 @@ package ModeloDAO;
 import Modelo.Competicion;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-
 public class CompeticionDAO {
     protected Connection con;
 

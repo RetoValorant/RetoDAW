@@ -13,7 +13,6 @@ public class ConsultarEquipo extends JDialog {
     private JTextField tfCodEquipo;
     private JTextArea taJugadores;
     private JButton bAtras;
-    private VistaController vistaController;
 
     public ConsultarEquipo(VistaController vistaController) {
         setContentPane(pPrincipal);
@@ -28,13 +27,7 @@ public class ConsultarEquipo extends JDialog {
         tfPuntuacionTotal.setEditable(false);
         taJugadores.setEditable(false);
 
-        this.vistaController = vistaController;
-
-        bAtras.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
+        bAtras.addActionListener(e -> onCancel());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -45,11 +38,9 @@ public class ConsultarEquipo extends JDialog {
         });
 
         // call onCancel() on ESCAPE
-        pPrincipal.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        pPrincipal.registerKeyboardAction(e -> onCancel(),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT
+        );
 
         tfNombreEquipo.addFocusListener(new FocusAdapter() {
             @Override

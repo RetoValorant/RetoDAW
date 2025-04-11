@@ -18,8 +18,7 @@ import javax.swing.JOptionPane;
 
 public class EquipoController {
 
-    private EquipoDAO eDAO;
-    private LocalDate FECHAFUNDACION;
+    private final EquipoDAO eDAO;
     //fecha fundacion hay que meterla en Juego
 
     public EquipoController(EquipoDAO eDAO) {
@@ -27,7 +26,7 @@ public class EquipoController {
     }
 
     public void definirFechaFundacion(Juego j) {
-        FECHAFUNDACION = j.getFechaSalida();
+        LocalDate FECHAFUNDACION = j.getFechaSalida();
     }
 
     /**Pasa por este metodo validando el nombre y devolviendo el String a validarEquipo()*/

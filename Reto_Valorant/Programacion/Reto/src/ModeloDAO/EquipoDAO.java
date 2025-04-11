@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class EquipoDAO {
 
     protected Connection con;
@@ -51,7 +50,7 @@ public class EquipoDAO {
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, nombreEquipo);
         return ps.executeUpdate() != 0;
-        //posiblemente lanzara algun trigger si tiene jugadores
+        //lanzara trigger si tiene jugadores
     }
 
     public boolean actualizarFechaEquipo(String nombre,String fechaFund) throws SQLException {

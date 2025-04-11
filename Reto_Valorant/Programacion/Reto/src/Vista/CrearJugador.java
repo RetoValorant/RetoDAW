@@ -9,11 +9,9 @@ public class CrearJugador extends  JDialog{
     private JTextField tfApellidoJugador;
     private JButton bAceptar;
     private JButton bCancelar;
-    private JTextField tfNacionalidad;
     private JTextField tfFechaNaci;
     private JTextField tfSueldo;
     private JTextField tfRol;
-    private JTextField tfEquipo;
     private JLabel lNombreJugador;
     private JLabel lApellidoJugador;
     private JLabel lNacionalidad;
@@ -22,6 +20,8 @@ public class CrearJugador extends  JDialog{
     private JLabel lRol;
     private JLabel lEquipo;
     private JPanel pPrincipal;
+    private JComboBox cbEquiposDisp;
+    private JComboBox cmNacionalidades;
     private VistaController vistaController;
 
     public CrearJugador(VistaController vistaController) {
