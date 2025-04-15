@@ -1,6 +1,5 @@
 package ModeloDAO;
 
-import Modelo.Equipo;
 import Modelo.Jugador;
 
 import java.sql.Connection;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 
 public class JugadorDAO {
 
-        private static ArrayList<Jugador> jugadores = new ArrayList<>();
+        private static final ArrayList<Jugador> jugadores = new ArrayList<>();
         protected Connection con;
         private String sql;
         public JugadorDAO(Connection c) {
@@ -19,8 +18,7 @@ public class JugadorDAO {
         }
 
         public ArrayList<Jugador> obtenerPorEquipo(int codEquipo) throws SQLException {
-            sql = "SELECT cod_jugador,nombre,apellido,nacionalidad,fecha_nac,sueldo,nickname,rol FROM jugadores WHERE cod_equipo = ?";
-            ArrayList<Jugador> jugadores = new ArrayList<>();
+            sql = "SELECT * FROM jugadores WHERE cod_equipo = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, String.valueOf(codEquipo));
             ResultSet rs = ps.executeQuery();
@@ -52,5 +50,29 @@ public class JugadorDAO {
         ps.setInt(8, codEquipo);
 
         return ps.executeUpdate() != 0;
+    }
+    public boolean borrarJugador(String nickName) throws SQLException {
+            sql="DELETE FROM jugadores WHERE lower(nickname) = lower(?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nickName);
+            return ps.executeUpdate() != 0;
+    }
+    public Jugador obtenerJugador(String nickName)throws SQLException {
+        sql="SELECT * FROM jugadores WHERE lower(nickname) = lower(?)";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, nickName);
+        ResultSet rs = ps.executeQuery();
+        Jugador j = new Jugador();
+        if (rs.next()) {
+            j.setCodJugador(rs.getInt("cod_jugador"));
+            j.setNombre(rs.getString("nombre"));
+            j.setApellido(rs.getString("apellido"));
+            j.setNacionalidad(rs.getString("nacionalidad"));
+            j.setFechaNacimiento(rs.getDate("fecha_nac").toLocalDate());
+            j.setSueldo(rs.getDouble("sueldo"));
+            j.setNickname(rs.getString("nickname"));
+            j.setRol(rs.getString("rol"));
         }
+        return j;
+    }
 }

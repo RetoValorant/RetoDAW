@@ -2,7 +2,6 @@ package ModeloController;
 
 import ModeloDAO.JuegoDAO;
 
-import javax.swing.*;
 import java.time.LocalDate;
 
 public class JuegoController {

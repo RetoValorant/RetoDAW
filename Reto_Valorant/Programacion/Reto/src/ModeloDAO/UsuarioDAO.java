@@ -1,6 +1,5 @@
 package ModeloDAO;
 
-import BaseDatos.BaseDatos;
 import Modelo.Usuario;
 
 import java.sql.Connection;
@@ -29,7 +28,6 @@ public class UsuarioDAO {
             usuario.setPaswd(rs.getString("contraseña"));
             usuario.setTipoUsuario(rs.getString("tipo_usuario"));
             return usuario;
-
         }
         return null;
     }

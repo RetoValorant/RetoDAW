@@ -1,11 +1,8 @@
 package Vista;
 
-import ModeloController.JornadaController;
 import ModeloController.VistaController;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.SQLException;
@@ -53,41 +50,20 @@ public class IniciarSesion extends JFrame{
             }
         });
 
-        aceptarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if (vistaController.validarPassWord(String.valueOf(tfPassword.getPassword()))){
-                        //se puede obtener el tipoUsuario para el contructor de PanelUsuario
-                        dispose();
-                        PanelUsuario panelUsuario = new PanelUsuario(vistaController);
-                        panelUsuario.setVisible(true);
-                    }else {
-                        JOptionPane.showMessageDialog(pPricipal,"El usuario o contraseña no es correcto");
-                    }
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+        aceptarButton.addActionListener(_ -> {
+            try {
+                if (vistaController.validarPassWord(String.valueOf(tfPassword.getPassword()))){
+                    //se puede obtener el tipoUsuario para el contructor de PanelUsuario
+                    dispose();
+                    PanelUsuario panelUsuario = new PanelUsuario(vistaController);
+                    panelUsuario.setVisible(true);
+                }else {
+                    JOptionPane.showMessageDialog(pPricipal,"El usuario o contraseña no es correcto");
                 }
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
             }
         });
-    }
-
-
-
-    public JPanel getpPricipal() {
-        return pPricipal;
-    }
-
-    public JTextField getTfUsuario() {
-        return tfUsuario;
-    }
-
-    public JTextField getTfPassword() {
-        return tfPassword;
-    }
-
-    public JButton getAceptarButton() {
-        return aceptarButton;
     }
 
     public VistaController getVistaController() {

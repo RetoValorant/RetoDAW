@@ -4,7 +4,6 @@ import ModeloController.VistaController;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.beans.Visibility;
 
 public class ActualizarEquipo extends JDialog {
     private JPanel pPrincipal;
@@ -12,10 +11,6 @@ public class ActualizarEquipo extends JDialog {
     private JTextField tfFechaFundNueva;
     private JButton bAceptar;
     private JButton bCancelar;
-    private JLabel lNombreNuevo;
-    private JLabel lPuncuacionNueva;
-
-    private VistaController vistaController;
 
     public ActualizarEquipo(VistaController vistaController) {
         setTitle("Actualizar Equipo");
@@ -25,12 +20,7 @@ public class ActualizarEquipo extends JDialog {
         setLocationRelativeTo(pPrincipal.getRootPane());
         setResizable(false); //para que sea de posicion y tamaño fijo
 
-        this.vistaController = vistaController;
-        bCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
+        bCancelar.addActionListener(_ -> onCancel());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -63,14 +53,11 @@ public class ActualizarEquipo extends JDialog {
                 }
             }
         });
-        bAceptar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    onOk();
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(pPrincipal,ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-                }
+        bAceptar.addActionListener(_ -> {
+            try {
+                onOk();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(pPrincipal,ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
             }
         });
     }
@@ -81,7 +68,7 @@ public class ActualizarEquipo extends JDialog {
         dispose();
     }
     /**Utilizo ifs para ver si se ha modificado fecha,nombre o ambos, para hacer la programacion mas simle y dividirla en funciones mas pequñas*/
-    private void onOk() throws Exception {
+    private void onOk() {
 
         //aqui se manda a vista, modelo... y update del equpo
         /*if(tfNombreNuevo.getText().equals(vistaController.getEquipo().getNombre())){

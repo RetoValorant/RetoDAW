@@ -1,7 +1,6 @@
 package ModeloDAO;
 
 
-import Modelo.Equipo;
 import Modelo.Jornada;
 
 import java.sql.Connection;

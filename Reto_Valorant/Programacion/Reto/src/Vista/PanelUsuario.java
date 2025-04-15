@@ -35,62 +35,28 @@ public class PanelUsuario extends JFrame{
         this.vistaController = vistaController ;
 
         //crear Listeners
-        iCrearEquipo.addActionListener(e -> {
-            vistaController.setCrearEquipo(vistaController);
-        });
-        iConsultarEquipo.addActionListener(e -> {
-            vistaController.setConsultarEquipo(vistaController);
-        });
-        iActualizarEquipo.addActionListener(e -> {
-            vistaController.setActualizarEquipo(vistaController);
-        });
-        iBorrarEquipo.addActionListener(e -> {
-            vistaController.setBorrarEquipo(vistaController);
-        });
-        iCrearJugador.addActionListener(e -> {
+        iCrearEquipo.addActionListener(_ -> vistaController.setCrearEquipo(vistaController));
+        iConsultarEquipo.addActionListener(_ -> vistaController.setConsultarEquipo(vistaController));
+        iActualizarEquipo.addActionListener(_ -> vistaController.setActualizarEquipo(vistaController));
+        iBorrarEquipo.addActionListener(_ -> vistaController.setBorrarEquipo(vistaController));
+        iCrearJugador.addActionListener(_ -> {
             try {
                 vistaController.setCrearJugador(vistaController);
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
         });
-        iConsultarJugador.addActionListener(e -> {
-            //vistaController.setConsultarJugador(this);
-        });
-        iActualizarJugador.addActionListener(e -> {
-            //vistaController.setActualizarJugador(this);
-        });
-        iBorrarJugador.addActionListener(e -> {
-            //vistaController.setBorrarJugador(this);
-        });
+        iConsultarJugador.addActionListener(_ -> vistaController.setConsultarJugador(vistaController));
+        iActualizarJugador.addActionListener(_ -> vistaController.setActualizarJugador(vistaController));
 
-        mInformes.addActionListener(e -> {
-              //vistaController.setInformes(this);
-        });
+        /*
+        iBorrarJugador.addActionListener(_ -> //vistaController.setBorrarJugador(vistaController));
 
+        mInformes.addActionListener(_ -> //vistaController.setInformes(vistaController));
 
-        bEmpezarComp.addActionListener(e -> {
-            // Empezar competición
-        });
-    }
-    /*
-    public PanelUsuario(VistaController vistaController) {
-        setTitle("Iniciar Sesión");
-        setContentPane(pPrincipal);
-        bEmpezarComp.setVisible(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 220);
-        setLocationRelativeTo(null);
-        setResizable(false); //para que sea de posicion y tamaño fijo
+        bEmpezarComp.addActionListener(_ -> {}// Empezar competición);
+        */
 
-        this.vistaController = vistaController ;
-        //listeners pertinentes a la vista
-        mInformes.addActionListener(e -> {
-            // Generar informes);
-        });
-        getJMenuBar().setVisible(false);
-    }
-
-     */
+        }
 
 }

@@ -1,7 +1,5 @@
 package ModeloDAO;
 
-import Modelo.Competicion;
-import Modelo.Equipo;
 import Modelo.Juego;
 
 import java.sql.Connection;

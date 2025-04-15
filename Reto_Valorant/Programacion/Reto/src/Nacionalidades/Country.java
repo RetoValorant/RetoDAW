@@ -269,9 +269,6 @@ public enum Country {
     public String getTwoDigitsCode() {
         return twoDigitsCode;
     }
-    @Override
-    public String toString(){
-        return name;
-    }
+
 }
 

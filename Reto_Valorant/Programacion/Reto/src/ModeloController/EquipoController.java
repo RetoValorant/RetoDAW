@@ -16,10 +16,10 @@ import java.util.regex.Pattern;
 
 public class EquipoController {
 
-    private EquipoDAO eDAO;
+    private final EquipoDAO eDAO;
     private LocalDate FECHAFUNDACION;
-    private List<Equipo> equipos;
     //fecha fundacion hay que meterla en Juego
+    private List<Equipo> equipos;
 
     public EquipoController(EquipoDAO eDAO) {
         this.eDAO = eDAO;
@@ -33,23 +33,11 @@ public class EquipoController {
         return equipos;
     }
 
-    /**Pasa por este metodo validando el nombre y devolviendo el String a validarEquipo()*/
+
+    /**Metodos de validacion:
+     * Pasa por este metodo validando el nombre y devolviendo el String a validarEquipo()*/
     public Equipo validarEquipo(String nombre) throws Exception {
         return eDAO.validarEquipo(nombre);
-    }
-    public boolean borrarEquipo(String nombreEquipo) throws Exception {
-        return eDAO.borrarEquipo(nombreEquipo);
-    }
-
-    /**
-     * Pasan los dos (nombre y fecha) por una vaidacion en caso de nombres o dato que no sean satisfactorios
-     * , saca un JoptionPane y lo echa para atras
-     * */
-    public boolean crearEquipo(String nombre, String fechaFundacion) throws Exception {
-        return eDAO.crearEquipo(validarNombre(nombre),validarFecha(fechaFundacion));
-    }
-    public boolean actualizarEquipoFecha(String nombre, String fechaFundacion) throws Exception {
-        return eDAO.actualizarFechaEquipo(validarFecha(nombre),validarFecha(fechaFundacion));
     }
     public String validarNombre(String nombre) throws Exception {
         Pattern p = Pattern.compile("^[a-zA-Z0-9][a-zA-Z0-9 _-]{3,15}$"); //15 como mucho como en MER/MR
@@ -59,7 +47,7 @@ public class EquipoController {
         }
         return nombre;
     }
-
+    /**Se pasa a java.sql.Date en DAO*/
     public String validarFecha(String fecha) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         try {
@@ -72,5 +60,16 @@ public class EquipoController {
             throw new DateTimeParseException("La fecha no sigue un formato valido (dd-mm-aaaa)", fecha,0);
         }
     }
-    //se parsea a java.sql.date en DAO
+
+    /**CRUD de EquipoController*/
+    public boolean borrarEquipo(String nombreEquipo) throws Exception {
+        return eDAO.borrarEquipo(nombreEquipo);
+    }
+    public boolean crearEquipo(String nombre, String fechaFundacion) throws Exception {
+        return eDAO.crearEquipo(validarNombre(nombre),validarFecha(fechaFundacion));
+    }
+    public boolean actualizarEquipoFecha(String nombre, String fechaFundacion) throws Exception {
+        return eDAO.actualizarFechaEquipo(validarFecha(nombre),validarFecha(fechaFundacion));
+    }
+
 }
