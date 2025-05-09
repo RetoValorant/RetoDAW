@@ -324,12 +324,9 @@ public class VistaController {
     public List<String> jugadores(String equipo, JPanel pPrincipal) throws Exception {
         return modeloController.jugadores(equipo);
     }
-    public Jugador getJugador() {
-        return this.jugador;
-    }
     public void rellenarCamposJugadorUpdate(JPanel pPrincipal) throws SQLException {
         // Obtener el jugador actual desde el atributo del controlador
-        Jugador jugador = getJugador();
+        Jugador jugador = modeloController.devolverJugador();
         if (jugador == null) {
             throw new SQLException("No se pudo obtener el jugador.");
         }
@@ -351,13 +348,15 @@ public class VistaController {
             }
         }
     }
-    public boolean actualizarJugador(Jugador jugadorActualizado) {
-        try {
-            return jugadorController.actualizarJugador(jugadorActualizado);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public boolean actualizarJugador(String apellido, String nombre, String rol, String nacionalidad, LocalDate fecha, Double sueldo) throws Exception {
+        Jugador jugadorActualizado = modeloController.devolverJugador();
+        jugadorActualizado.setApellido(apellido);
+        jugadorActualizado.setNombre(nombre);
+        jugadorActualizado.setRol(rol);
+        jugadorActualizado.setNacionalidad(nacionalidad);
+        jugadorActualizado.setFechaNacimiento(fecha);
+        jugadorActualizado.setSueldo(sueldo);
+        return jugadorController.actualizarJugador(jugadorActualizado);
     }
 
     public void cargarEquiposEnComboBox(JComboBox<Equipo> comboBox) throws SQLException {

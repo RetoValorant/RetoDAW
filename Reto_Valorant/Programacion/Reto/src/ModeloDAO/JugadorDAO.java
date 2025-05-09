@@ -128,17 +128,16 @@ public class JugadorDAO {
      * @throws SQLException si ocurre un error 
      */
     public boolean actualizarJugador(Jugador jugador) throws SQLException {
-        sql = "UPDATE jugadores SET nombre=?, apellido=?, nacionalidad=?, fecha_nac=?, sueldo=?, nickname=?, rol=?, cod_equipo=? WHERE cod_jugador=?";
+        sql = "UPDATE jugadores SET nombre=?, apellido=?, nacionalidad=?, fecha_nac=?, sueldo=?, rol=?, cod_equipo=? WHERE cod_jugador=?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, jugador.getNombre());
         ps.setString(2, jugador.getApellido());
         ps.setString(3, jugador.getNacionalidad());
         ps.setDate(4, java.sql.Date.valueOf(jugador.getFechaNacimiento()));
         ps.setDouble(5, jugador.getSueldo());
-        ps.setString(6, jugador.getNickname());
-        ps.setString(7, jugador.getRol());
-        ps.setInt(8, jugador.getEquipo().getCodEquipo());
-        ps.setInt(9, jugador.getCodJugador());
+        ps.setString(6, jugador.getRol());
+        ps.setInt(7, jugador.getEquipo().getCodEquipo());
+        ps.setInt(8, jugador.getCodJugador());
         return ps.executeUpdate() != 0;
     }
     /**
