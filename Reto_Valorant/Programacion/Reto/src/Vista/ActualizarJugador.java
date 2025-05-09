@@ -40,6 +40,14 @@ public class ActualizarJugador extends JDialog {
 
         bCancelar.addActionListener(e -> onCancel());
 
+        //Quitar la posibilidad de editar nada mas que el nickname
+        tfApellido.setEditable(false);
+        tfNombre.setEditable(false);
+        tfNacionalidad.setEditable(false);
+        tfFecha.setEditable(false);
+        tfSueldo.setEditable(false);
+        tfRol.setEditable(false);
+        cbEquipos.setEditable(false);
         // Cargar equipos al iniciar
         try {
             vistaController.cargarEquiposEnComboBox(cbEquipos);
@@ -53,6 +61,14 @@ public class ActualizarJugador extends JDialog {
                 try {
                     if (vistaController.validarJugador(tfNickName.getText())) {
                         vistaController.rellenarCamposJugadorUpdate(pPrincipal);
+                        tfNickName.setEditable(false);
+                        tfApellido.setEditable(true);
+                        tfNombre.setEditable(true);
+                        tfNacionalidad.setEditable(true);
+                        tfFecha.setEditable(true);
+                        tfSueldo.setEditable(true);
+                        tfRol.setEditable(true);
+                        cbEquipos.setEditable(true);
                     } else {
                         throw new Exception("No existe un jugador con ese nickname.");
                     }
@@ -81,16 +97,6 @@ public class ActualizarJugador extends JDialog {
         });
     }
 
-
-    public boolean validarJugador(String nickname) throws SQLException {
-        Jugador j = jugadorController.obtenerJugadorPorNickname(nickname);
-        if (j != null && j.getNombre() != null) {
-            this.jugador = j;
-            return true;
-        }
-        return false;
-    }
-
     private void onOk() throws Exception {
         if (camposVacios()) {
             throw new Exception("Los campos no pueden estar vacíos.");
@@ -110,16 +116,7 @@ public class ActualizarJugador extends JDialog {
             throw new Exception("Sueldo inválido. Debe ser numérico.");
         }
 
-        Jugador j = vistaController.getJugador();
-        j.setNombre(tfNombre.getText());
-        j.setApellido(tfApellido.getText());
-        j.setNacionalidad(tfNacionalidad.getText());
-        j.setFechaNacimiento(fechaNac);
-        j.setSueldo(sueldo);
-        j.setRol(tfRol.getText());
-        j.setEquipo((Equipo) cbEquipos.getSelectedItem());
-
-        if (vistaController.actualizarJugador(j)) {
+        if (vistaController.actualizarJugador(tfApellido.getText(),tfNombre.getText(),tfRol.getText(),tfNacionalidad.getText(),fechaNac,sueldo)) {
             JOptionPane.showMessageDialog(pPrincipal, "Jugador actualizado correctamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(pPrincipal, "No se realizaron cambios.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
