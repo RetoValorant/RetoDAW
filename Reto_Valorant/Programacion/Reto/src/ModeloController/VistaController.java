@@ -30,78 +30,159 @@ public class VistaController {
     private Jugador jugador;
     protected JugadorController jugadorController;
 
+    /**
+     * Constructor 
+     * @param modeloController 
+     */
     public VistaController(ModeloController modeloController) {
         this.modeloController = modeloController;
         setIniciarSesion();
     }
 
-    /**Metodos de construccion de ventanas*/
+    //Metodos de construccion de ventanas
+    /**
+     * Lanza la ventana de inicio de sesión.
+     */
     public void setIniciarSesion() {
         IniciarSesion iniciarSesion = new IniciarSesion(this);
         iniciarSesion.setVisible(true);
     }
+
+    /**
+     * Abre la vista para consultar un equipo.
+     * @param vistaController 
+     */
     public void setConsultarEquipo(VistaController vistaController){
         consultarEquipo = new ConsultarEquipo(vistaController);
         consultarEquipo.setVisible(true);
     }
+
+    /**
+     * Crea y muestra la ventana que permite ver todos los equipos
+     * @param vistaController 
+     */
     public void setVerTodosEquipos(VistaController vistaController){
         verTodosEquipos = new VerTodosEquipos(vistaController);
         verTodosEquipos.setVisible(true);
     }
+
+     /**
+     * Crea y muestra la ventana para borrar un equipo
+     * @param vistaController 
+     */
     public void setBorrarEquipo(VistaController vistaController){
         BorrarEquipo borrarEquipo = new BorrarEquipo(vistaController);
         borrarEquipo.setVisible(true);
     }
+
+    /**
+     * Crea y muestra la ventana para borrar un jugador
+     * @param vistaController 
+     */
     public void setBorrarJugador(VistaController vistaController){
         BorrarJugador borrarJugador = new BorrarJugador(vistaController);
         borrarJugador.setVisible(true);
     }
 
+    
+    /**
+     * Crea y muestra la ventana para consultar un jugador
+     * @param vistaController 
+     */
     public void setConsultarJugador(VistaController vistaController){
         consultarJugador = new ConsultarJugador(vistaController);
         consultarJugador.setVisible(true);
     }
+
+    
+    /**
+     * Crea y muestra la ventana para actualizar los datos de un jugador
+     * @param vistaController 
+     */
     public void setActualizarJugador(VistaController vistaController){
         ActualizarJugador actualizarJugador = new ActualizarJugador(vistaController);
         actualizarJugador.setVisible(true);
     }
+
+     /**
+     * Crea y muestra la ventana para crear un nuevo jugador
+     * @param vistaController 
+     * @throws SQLException Si ocurre un error 
+     */
     public void setCrearJugador(VistaController vistaController) throws SQLException {
         CrearJugador crearJugador = new CrearJugador(vistaController);
         crearJugador.setVisible(true);
     }
+
+    
+    /**
+     * Crea y muestra la ventana para crear un nuevo equipo
+     * @param vistaController 
+     */
     public void setCrearEquipo(VistaController vistaController){
         CrearEquipo crearEquipo = new CrearEquipo(vistaController);
         crearEquipo.setVisible(true);
     }
+
+    /**
+     * Crea y muestra la ventana para actualizar los datos de un equipo
+     * @param vistaController 
+     */
     public void setActualizarEquipo(VistaController vistaController){
         actualizarEquipo = new ActualizarEquipo(vistaController);
         actualizarEquipo.setVisible(true);
     }
+
+    /**
+     * Crea y muestra la ventana para gestionar enfrentamientos
+     * @param vistaController
+     */
     public void setGestionarEnfrentamientos(VistaController vistaController){
         gestionarEnfrentamientos = new GestionarEnfrentamientos(vistaController);
         gestionarEnfrentamientos.obtenerJornadas();
         //gestionarEnfrentamientos.rellenarConEquipos();
         gestionarEnfrentamientos.setVisible(true);
     }
+
+    /**
+     * Crea y muestra la ventana para ver enfrentamientos 
+     * @param vistaController 
+     * @param tipoUsuario Tipo de usuario que accede a la vista
+     */
     public void setVerEnfrentamientos(VistaController vistaController, String tipoUsuario){
         verEnfrentamientos = new VerEnfrentamientos(vistaController, tipoUsuario);
         verEnfrentamientos.obtenerJornadas();
         //gestionarEnfrentamientos.rellenarConEquipos();
         verEnfrentamientos.setVisible(true);
     }
+    
+    /**
+     * Crea y muestra la ventana para consultar los jugadores de un equipo
+     * @param vistaController 
+     */
     public void setConsultarJugadoresPorEquipo(VistaController vistaController){
         consultarJugadoresPorEquipo = new ConsultarJugadoresPorEquipo(vistaController);
         consultarJugadoresPorEquipo.obtenerEquipos();
         consultarJugadoresPorEquipo.setVisible(true);
     }
+
+     /**
+     * Crea una nueva jornada 
+     * @throws SQLException si hay un error 
+     */
     public void crearJornadas()throws SQLException{
         modeloController.crearJornadas();
     }
 
+     /**
+     * Crea una nuevo enfrentamiento 
+     * @throws SQLException si hay un error 
+     */
     public void crearEnfrentamiento() throws Exception {
         modeloController.crearEnfrentamiento();
     }
 
+    
     public ConsultarEquipo getIniciarSesion() {
         return consultarEquipo;
     }
@@ -142,11 +223,25 @@ public class VistaController {
     public boolean validarSueldo(String sueldo){
         return Double.parseDouble(sueldo) >= 1184.00;
     }
+
+    /**
+     * Valida si un nickname es correcto según el patrón definido
+     * @param nickName Nickname del jugador
+     * @return nickname valido
+     */
     public boolean validarNik(String nickName){
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{3,20}$");
         Matcher matcher = pattern.matcher(nickName);
         return matcher.matches();
     }
+
+    
+    /**
+     * Valida si el nombre del jugador cumple el formato definido
+     * @param nombreJugador Nombre del jugador
+     * @return false 
+     * @throws Exception si no cumple con lo definido
+     */
     public boolean validarNomYAp(String nombreJugador)throws Exception {
         final Pattern pattern = Pattern.compile("^[A-Za-zñÑáéíóúÁÉÍÓÚüÜ ]{2,20}$");
         final Matcher matcher = pattern.matcher(nombreJugador);
@@ -156,6 +251,12 @@ public class VistaController {
         return false;
     }
 
+     /**
+     * Valida la fecha de nacimiento del jugador
+     * @param fechaNaci Fecha de nacimiento en formato dd-MM-yyyy
+     * @return fecha si está en el rango válido de edad 16-65 años
+     * @throws Exception si la fecha está fuera del rango 16-65
+     */
     public  boolean validarFechaNac(String fechaNaci) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate fecha = LocalDate.parse(fechaNaci, formatter);
@@ -166,27 +267,66 @@ public class VistaController {
         throw new Exception("La edad debe estar comprendida entre los 16 y 65 años");
     }
 
-    /**Metodos de creacion*/
+    //Metodos de creacion
+    /**
+     * para la cracion de equipo, y su fecha de fundacion
+     * @param nombre
+     * @param fechaFund
+     * @return equipo
+     * @throws Exception si salta un error
+     */
     public boolean crearEquipo(String nombre,String fechaFund) throws Exception {
         Equipo equipo = new Equipo(nombre,validarFecha(fechaFund));
         return modeloController.crearEquipo(equipo);
     }
 
+    
+    /**
+     * para la cracion de equipo, y su fecha de fundacion
+     * @param nombre
+     * @param apellido
+     * @param nacionalidad
+     * @param fechaNac
+     * @param sueldo
+     * @return rol
+     * @param equipo
+     * @return jugador
+     * @throws Exception si salta un error
+     */
     public boolean crearJugador(String nombre, String apellido, String nacionalidad, String fechaNac, String sueldo, String rol, String nickName, Equipo equipo) throws Exception {
         Jugador jugador = new Jugador(nombre,apellido,nacionalidad,fechaNac,sueldo,rol,nickName,equipo);
         return modeloController.crearJugador(jugador);
     }
 
-    /**Metodos de borrado*/
+    //Metodos de borrado
+     /**
+     * Borrar jugadores 
+     * @param nickName
+     * @return jugador
+     * @throws Exception si salta un error
+     */
     public boolean borrarJugador(String nickName) throws SQLException {
         Jugador jugador = new Jugador(nickName);
         return modeloController.borrarJugador(jugador);
     }
+
+     /**
+     * Borrar los equipos
+     * @param nombreEquipo
+     * @return equipo
+     * @throws Exception si salta un error
+     */
     public boolean borrarEquipo(String nombreEquipo) throws Exception {
         Equipo equipo = new Equipo(nombreEquipo.toLowerCase());
         return modeloController.borrarEquipo(equipo);
     }
 
+    /**
+     * Valida el formato de una fecha 
+     * @param fecha Fecha en formato dd-MM-yyyy
+     * @return Fecha válida 
+     * @throws Exception si la fecha está en un formato inválido
+     */
     public LocalDate validarFecha(String fecha) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         try {
@@ -268,25 +408,57 @@ public class VistaController {
         pPrincipal.revalidate();
         pPrincipal.repaint();
     }
+
+     /**
+     * Rellena los campos del formulario de actualización de equipo 
+     * @param pPrincipal 
+     */
     public void rellenarCamposEquipoUpdate(JPanel pPrincipal) {
         actualizarEquipo.getTfNombreNuevo().setText(modeloController.equipo.getNombre());
         actualizarEquipo.getTfFechaFundNueva().setText(modeloController.equipo.getFechaFundacion().toString());
         pPrincipal.revalidate(); pPrincipal.repaint();
     }
+
+    /**
+     * Recupera una lista con los nombres de los equipos
+     * @return lista de equipos.
+     * @throws SQLException Si ocurre un error 
+     */
     public List<String> rellenarEquipos() throws SQLException {
         return modeloController.getEquiposProcedimiento();
     }
 
-    /**Metodos de Actualizacion de datos*/
+    //Metodos de Actualizacion de datos
+
+     /**
+     * Actualiza la fecha de fundación de un equipo
+     * @param nombreEquipo El nombre del equipo a actualizar
+     * @param fechaFund La nueva fecha de fundación
+     * @return equipo validado
+     * @throws Exception Si ocurre un error 
+     */
     public boolean actualizarEquipoFecha(String nombreEquipo, LocalDate fechaFund) throws Exception {
         Equipo equipo = new Equipo(nombreEquipo, validarFecha(String.valueOf(fechaFund)));
         return modeloController.actualizarEquipoFecha(equipo);
     }
 
+     /**
+     * Actualiza el nombre de un equipo manteniendo su fecha de fundación
+     * @param nombreEquipo El nuevo nombre del equipo
+     * @param fechaFund La fecha de fundación del equipo
+     * @return equipo correctamente
+     * @throws Exception Si ocurre un error
+     */
     public boolean actualizarEquipoNombre(String nombreEquipo, LocalDate fechaFund) throws Exception {
         Equipo equipo = new Equipo(nombreEquipo, validarFecha(String.valueOf(fechaFund)));
         return modeloController.actualizarEquipoNombre(equipo);
     }
+
+    /**
+     * Obtiene la lista de jornadas 
+     * @return jornadas 
+     * @throws Exception Si ocurre un error 
+     */
     public List<Jornada> obtenerJornadas() throws Exception {
         return modeloController.jornadaController.getJornadas();
     }
@@ -294,6 +466,13 @@ public class VistaController {
     public void empezarCompeticion() throws SQLException {
         modeloController.empezarCompeticion();
     }
+
+    /**
+     * Guarda los resultados de un enfrentamiento 
+     * @param res1 Resultado del equipo 1
+     * @param res2 Resultado del equipo 2
+     * @throws Exception si ocurre un error al guardar los resultados
+     */
     public void guardarResultados(String res1, String res2) throws Exception {
         if (res1 == null)
             enfrentamientoElegido.setResultadosEq1(0);
@@ -305,6 +484,8 @@ public class VistaController {
             enfrentamientoElegido.setResultadosEq1(Integer.parseInt(res2));
         modeloController.guardarResultados(enfrentamientoElegido);
     }
+
+    
     public List<String> enfrentamientos(String jornada) throws Exception {
         enfrentamientos = modeloController.enfrentamientos(Integer.parseInt(jornada));
         List<String> resultados = new ArrayList<>();
